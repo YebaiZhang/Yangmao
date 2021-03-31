@@ -1,27 +1,25 @@
-name: 同步上游仓库
-on:
-  schedule:
-    - cron: '0 8 */7 * *'
-  watch:
-    types: started
-  repository_dispatch:
-    types: sync-repo
-jobs:
-  repo-sync:
-    env:
-      PAT: ${{ secrets.PAT }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+名称：同步上游仓库
+于：
+  时间表：
+    - cron 的：' 0 8 * / 7 * * '
+  观看：
+    类型：开始
+  repository_dispatch：
+    类型：同步回购
+职位：
+  回购同步：
+    env：
+      PAT：$ {{secrets.PAT}} ＃此处 PAT 需要申请，教程详见：https：//www.jianshu.com/p/bb82b3ad1d11
+    运行：ubuntu-latest
+    如果：github.event.repository.owner.id == github.event.sender.id
+    步骤：
+      -用途：actions / checkout @ v2
+        与：
+          持久凭证：false
 
-      - name: sync xmly_speed
-        uses: repo-sync/github-sync@v2
-        if: env.PAT
-        with:
-          source_repo: "https://github.com/Zero-S1/xmly_speed.git"
-          source_branch: "master"
-          destination_branch: "main"
-          github_token: ${{ secrets.PAT }}
+      -名称：同步 xmly_speed
+        用途：repo-sync / github-sync @ v2
+        如果：env.PAT
+        与：
+          source_repo：“ https://github.com/Zero-S1/xmly_speed.git ”
+          source_branch：“大师”
